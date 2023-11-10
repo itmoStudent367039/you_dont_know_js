@@ -1,7 +1,3 @@
-## Глава 1:
-
----
-
 1. ***Hoisting:***
 
 ```javascript
