@@ -369,3 +369,66 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) );
 // "nap,teachers,ear" или "PAN,cheaters,era"
 ```
+---
+***Перепишите на await / async***
+```js
+function loadJson(url) {
+  return fetch(url)
+    .then(response => {
+      if (response.status == 200) {
+        return response.json();
+      } else {
+        throw new Error(response.status);
+      }
+    })
+}
+
+loadJson('no-such-user.json') // (3)
+  .catch(alert); // Error: 404
+```
+
+```js
+async function loadJson(url) { // (1)
+  let response = await fetch(url); // (2)
+
+  if (response.status == 200) {
+    let json = await response.json(); // (3)
+    return json;
+  }
+
+  throw new Error(response.status);
+}
+
+loadJson('no-such-user.json')
+  .catch(alert); // Error: 404 (4)
+```
+---
+***Вызовите async–функцию из "обычной"***
+```js
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return 10;
+}
+
+function f() {
+  // ...что здесь написать?
+  // чтобы вызвать wait() и дождаться результата "10" от async–функции
+  // не забывайте, здесь нельзя использовать "await"
+}
+```
+```js
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return 10;
+}
+
+function f() {
+  // покажет 10 через 1 секунду
+  wait().then(result => alert(result));
+}
+
+f();
+```
+---
