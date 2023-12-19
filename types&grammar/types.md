@@ -302,4 +302,70 @@ function unique(arr) {
 ```
 ---
 
-+ ***Очистите массив от анаграммы***
++ ***Что выведет?***
+
+```js
+    a = ["42"]
+    b = "42"
+    c = 42
+    console.log(a == c);
+    // true
+```
+
+---
++ ***Что выведет?***
+
+```js
+    a = ["42"]
+    b = "42"
+    c = 42
+    console.log(a == b);
+    // true
+```
+
+---
+
++ ***Что выведет?***
+
+```js
+    a = ["42"]
+    b = "42"
+    c = 42
+    console.log(a === b);
+    // false
+```
+
+---
++ ***Что выведет?***
+```js
+    a = ["42", "32"]
+    b = [42, 32]
+    console.log(a == b);
+    // false
+```
+---
+
++ ***Отфильтруйте анаграммы***
+
+```js
+    function aclean(arr) {
+    let map = new Map();
+
+    for (let word of arr) {
+        // разбиваем слово на буквы, сортируем и объединяем снова в строку
+        let sorted = arr[i] // PAN
+            .toLowerCase() // pan
+            .split("") // ["p","a","n"]
+            .sort() // ["a","n","p"]
+            .join(""); // anp
+        map.set(sorted, word);
+    }
+
+    return Array.from(map.values());
+}
+
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+alert( aclean(arr) );
+// "nap,teachers,ear" или "PAN,cheaters,era"
+```
